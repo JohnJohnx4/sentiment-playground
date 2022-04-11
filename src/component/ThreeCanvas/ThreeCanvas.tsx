@@ -14,9 +14,11 @@ const ThreeCanvas: React.FC = () => {
 
   useEffect(() => {
     loadVrm(LocalGLTFModel);
-  }, [loadVrm]);
+    //eslint-disable-next-line
+  }, []);
   
   useEffect(() => {
+    console.log('rerender')
     if (!vrm || !vrm.lookAt) return;
     camera.position.set(0, 1.2, 2)
     vrm.lookAt.target = camera;

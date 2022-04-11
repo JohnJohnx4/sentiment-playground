@@ -5,19 +5,36 @@ import {
   Input,
   InputAdornment,
   Typography,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
 } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { SentimentStyles } from './Sentiment.styles';
 import Sentiment from 'sentiment';
 import SendIcon from '@mui/icons-material/Send';
 
 const Header = () => (
   <SentimentStyles.Section>
-    <Typography variant='h2'>Basic Sentiment Analysis</Typography>
+    <Typography variant='h2'>Prototype Sentiment Analysis</Typography>
     <Typography variant='subtitle1'>
       Type in a phrase to analyze the tone and sentiment
     </Typography>
   </SentimentStyles.Section>
 );
+
+const ScoreItem: React.FC<{ text: string; score: number }> = ({
+  text,
+  score,
+}) => {
+  return (
+    <div>
+      <Typography variant='h5' textAlign={'left'}>
+        Score: {score} Text: {text}
+      </Typography>
+    </div>
+  );
+};
 
 const Footer = () => {
   const defaultSentiment = {
@@ -39,9 +56,12 @@ const Footer = () => {
     { score: number; text: string }[]
   >([]);
 
-  const handleUserInput = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(target.value);
-  };
+  const handleUserInput = useCallback(
+    ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      setUserInput(target.value);
+    },
+    []
+  );
 
   const handleUserSentiment = useCallback(() => {
     const sentiment = new Sentiment();
@@ -77,7 +97,6 @@ const Footer = () => {
                   </IconButton>
                 </InputAdornment>
               }
-              multiline
               value={userInput}
               onChange={handleUserInput}
             />
@@ -111,6 +130,22 @@ const Footer = () => {
           >
             Overall Score: {overallScore}
           </Typography>
+        </SentimentStyles.Section>
+        <SentimentStyles.Section>
+          {sentimentTracker.length > 0 && (
+            <Accordion elevation={0}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                See History
+              </AccordionSummary>
+              <AccordionDetails>
+                {sentimentTracker.map(
+                  (sentimentData: { text: string; score: number }) => (
+                    <ScoreItem {...sentimentData} />
+                  )
+                )}
+              </AccordionDetails>
+            </Accordion>
+          )}
         </SentimentStyles.Section>
       </SentimentStyles.Paper>
     </SentimentStyles.Root>
