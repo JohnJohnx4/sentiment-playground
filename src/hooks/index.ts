@@ -1,6 +1,5 @@
 import { VRM } from '@pixiv/three-vrm';
-import { useEffect, useRef, useState } from 'react';
-import { useThree } from '@react-three/fiber';
+import { useRef, useState } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export const useVrm = () => {
@@ -14,9 +13,5 @@ export const useVrm = () => {
       setVrm(vrm);
     });
   };
-
-  // Look at camera
-
-
   return { vrm, loadVrm };
 };
