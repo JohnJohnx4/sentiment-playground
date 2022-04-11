@@ -16,7 +16,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 const Header = () => (
   <SentimentStyles.Section>
-    <Typography variant='h2'>Prototype Sentiment Analysis</Typography>
+    <Typography variant='h3'>Sentiment Analysis</Typography>
     <Typography variant='subtitle1'>
       Type in a phrase to analyze the tone and sentiment
     </Typography>
@@ -83,7 +83,7 @@ const Footer = () => {
       <SentimentStyles.Paper elevation={3}>
         <Header />
 
-        <SentimentStyles.Section style={{ width: '70%', margin: 'auto' }}>
+        <SentimentStyles.FormSection>
           <FormControl sx={{ m: 1 }} fullWidth variant='standard'>
             <Input
               sx={{ m: 1, height: '52px' }}
@@ -101,11 +101,11 @@ const Footer = () => {
               onChange={handleUserInput}
             />
           </FormControl>
-        </SentimentStyles.Section>
+        </SentimentStyles.FormSection>
 
         <SentimentStyles.Section>
           {currentSentiment.tokens.length > 0 ? (
-            <Typography variant='h4'>
+            <Typography variant='h5'>
               {'Analysis: '}
               {currentSentiment.score === 0
                 ? 'You sound neutral'
@@ -114,12 +114,12 @@ const Footer = () => {
                 : 'You sound kind of mean'}
             </Typography>
           ) : (
-            <Typography variant='h4'>
+            <Typography variant='h5'>
               {userInput ? 'Press submit' : 'Type something'}
             </Typography>
           )}
           <Typography
-            variant='h5'
+            variant='h6'
             color={
               currentSentiment.score === 0
                 ? '#959595'
@@ -135,7 +135,7 @@ const Footer = () => {
           {sentimentTracker.length > 0 && (
             <Accordion elevation={0}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                See History
+                <Typography variant="h4">See History</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 {sentimentTracker.map(
