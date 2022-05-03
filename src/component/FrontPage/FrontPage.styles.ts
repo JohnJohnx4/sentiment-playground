@@ -4,6 +4,8 @@ import styled from 'styled-components';
 export const FrontPageStyles = {
   Root: styled.div`
     position: absolute;
+    height: 100vh;
+    width: 100vw;
   `,
   Paper: styled(Paper)`
     border-radius: 12px;

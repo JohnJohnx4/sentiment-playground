@@ -6,6 +6,7 @@ export const SentimentStyles = {
     position: absolute;
     margin: 16px;
     z-index: 9999;
+    right: 0px;
     @media (max-width: 640px) {
       bottom: 0;
     }
@@ -17,6 +18,8 @@ export const SentimentStyles = {
     text-align: center;
     &.MuiPaper-root {
       border-radius: 12px;
+      background-color: #e0c79f;
+      border: 4px solid #a6aa62;
     }
     @media (max-width: 640px) {
       width: 100%;

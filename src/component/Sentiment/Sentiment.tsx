@@ -16,8 +16,10 @@ import SendIcon from '@mui/icons-material/Send';
 
 const Header = () => (
   <SentimentStyles.Section>
-    <Typography variant='h3'>Sentiment Analysis</Typography>
-    <Typography variant='subtitle1'>
+    <Typography variant='h3' sx={{ color: '#3a3b3e' }}>
+      Sentiment Analysis
+    </Typography>
+    <Typography variant='subtitle1' sx={{ color: '#3a3b3e' }}>
       Type in a phrase to analyze the tone and sentiment
     </Typography>
   </SentimentStyles.Section>
@@ -79,7 +81,7 @@ const Footer = () => {
   }, [userInput]);
 
   return (
-    <SentimentStyles.Root>
+    <SentimentStyles.Root id='sentiment-root'>
       <SentimentStyles.Paper elevation={3}>
         <Header />
 
@@ -114,7 +116,7 @@ const Footer = () => {
                 : 'You sound kind of mean'}
             </Typography>
           ) : (
-            <Typography variant='h5'>
+            <Typography variant='h5' sx={{ color: '#b1863e' }}>
               {userInput ? 'Press submit' : 'Type something'}
             </Typography>
           )}
@@ -122,7 +124,7 @@ const Footer = () => {
             variant='h6'
             color={
               currentSentiment.score === 0
-                ? '#959595'
+                ? '#b1863e'
                 : currentSentiment.score > 0
                 ? 'green'
                 : 'red'
@@ -135,7 +137,7 @@ const Footer = () => {
           {sentimentTracker.length > 0 && (
             <Accordion elevation={0}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <Typography variant="h4">See History</Typography>
+                <Typography variant='h4'>See History</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 {sentimentTracker.map(
