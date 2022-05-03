@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Unity, { UnityContext } from 'react-unity-webgl';
 import { UnityStyles } from './UnityLayer.styles';
 
@@ -17,14 +17,14 @@ const unityContext = new UnityContext({
 
 const UnityLayer = () => {
   // The app's state.
-  const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const [progression, setProgression] = useState<number>(0);
+  // const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  // const [progression, setProgression] = useState<number>(0);
 
   // When the component is mounted, we'll register some event listener.
   useEffect(() => {
     unityContext.on('canvas', handleOnUnityCanvas);
-    unityContext.on('progress', handleOnUnityProgress);
-    unityContext.on('loaded', handleOnUnityLoaded);
+    // unityContext.on('progress', handleOnUnityProgress);
+    // unityContext.on('loaded', handleOnUnityLoaded);
     // When the component is unmounted, we'll unregister the event listener.
     return function () {
       unityContext.removeAllEventListeners();
@@ -33,19 +33,19 @@ const UnityLayer = () => {
 
   // Built-in event invoked when the Unity canvas is ready to be interacted with.
   function handleOnUnityCanvas(canvas: HTMLCanvasElement) {
-    console.log('Unity Loaded')
+    console.log('Unity Loaded');
     canvas.setAttribute('role', 'unityCanvas');
   }
 
   // Built-in event invoked when the Unity app's progress has changed.
-  function handleOnUnityProgress(progression: number) {
-    setProgression(progression);
-  }
+  // function handleOnUnityProgress(progression: number) {
+  //   setProgression(progression);
+  // }
 
   // Built-in event invoked when the Unity app is loaded.
-  function handleOnUnityLoaded() {
-    setIsLoaded(true);
-  }
+  // function handleOnUnityLoaded() {
+  //   setIsLoaded(true);
+  // }
 
   // This is the React component that will be rendering the Unity app.
   return (
