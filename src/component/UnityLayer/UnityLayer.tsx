@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Unity, { UnityContext } from 'react-unity-webgl';
 import { UnityStyles } from './UnityLayer.styles';
 
@@ -19,13 +19,9 @@ const UnityLayer: React.FC<Props> = ({
   progression,
   handleOnUnityLoaded,
 }) => {
-  // The app's state.
-
-  function sendTriggerReaction() {
-    unityContext.send('InteractionManager', 'TriggerReaction', 'test');
-  }
-
-  // When the component is mounted, we'll register some event listener.
+  const handleOnUnityCanvas = useCallback((canvas: HTMLCanvasElement) => {
+    canvas.setAttribute('role', 'unityCanvas');
+  }, []);
   useEffect(() => {
     unityContext.on('canvas', handleOnUnityCanvas);
     unityContext.on('progress', handleOnUnityProgress);
@@ -34,12 +30,12 @@ const UnityLayer: React.FC<Props> = ({
     return function () {
       unityContext.removeAllEventListeners();
     };
-  }, []);
-
-  function handleOnUnityCanvas(canvas: HTMLCanvasElement) {
-    console.log('Unity Loaded');
-    canvas.setAttribute('role', 'unityCanvas');
-  }
+  }, [
+    unityContext,
+    handleOnUnityLoaded,
+    handleOnUnityCanvas,
+    handleOnUnityProgress,
+  ]);
 
   return (
     <UnityStyles.Root className='wrapper'>

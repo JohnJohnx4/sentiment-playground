@@ -5,11 +5,11 @@ import {
   Input,
   InputAdornment,
   Typography,
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
+  // Accordion,
+  // AccordionDetails,
+  // AccordionSummary,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { SentimentStyles } from './Sentiment.styles';
 import Sentiment from 'sentiment';
 import SendIcon from '@mui/icons-material/Send';
@@ -25,18 +25,18 @@ const Header = () => (
   </SentimentStyles.Section>
 );
 
-const ScoreItem: React.FC<{ text: string; score: number }> = ({
-  text,
-  score,
-}) => {
-  return (
-    <div>
-      <Typography variant='h5' textAlign={'left'}>
-        Score: {score} Text: {text}
-      </Typography>
-    </div>
-  );
-};
+// const ScoreItem: React.FC<{ text: string; score: number }> = ({
+//   text,
+//   score,
+// }) => {
+//   return (
+//     <div>
+//       <Typography variant='h5' textAlign={'left'}>
+//         Score: {score} Text: {text}
+//       </Typography>
+//     </div>
+//   );
+// };
 
 interface Props {
   sendPlayAnimation: (animation: string) => void;
@@ -63,9 +63,9 @@ const SentimentDialogue: React.FC<Props> = ({
   const [currentSentiment, setCurrentSentiment] =
     useState<Sentiment.AnalysisResult>(defaultSentiment);
 
-  const [sentimentTracker, setSentimentTracker] = useState<
-    { score: number; text: string }[]
-  >([]);
+  const [, setSentimentTracker] = useState<{ score: number; text: string }[]>(
+    []
+  );
 
   const generateRandomNumber = () => {
     return Math.floor(Math.random() * (5 - 1 + 1) + 1);
@@ -75,12 +75,12 @@ const SentimentDialogue: React.FC<Props> = ({
     const animIndex = generateRandomNumber();
     console.log('triggering ');
     sendPlayAnimation(animations.posAnims[animIndex]);
-  }, []);
+  }, [animations.posAnims, sendPlayAnimation]);
 
   const triggerNegativeAnimation = useCallback(() => {
     const animIndex = generateRandomNumber();
     sendPlayAnimation(animations.negAnims[animIndex]);
-  }, []);
+  }, [animations.negAnims, sendPlayAnimation]);
 
   const handleUserInput = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { UnityContext } from 'react-unity-webgl';
-import { Button } from '@mui/material';
 import { FrontPageStyles } from './FrontPage.styles';
 import Sentiment from 'component/Sentiment';
 import UnityLayer from 'component/UnityLayer';
@@ -47,83 +46,83 @@ const sendPlayAnimation = (animation: string) => {
   unityContext.send('UnityChan', 'PlayAnimation', animation);
 };
 
-const DebugAnimationMenu = () => {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: '16px',
-        left: '16px',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '500px',
-        justifyContent: 'space-evenly',
-        zIndex: 999999,
-      }}
-    >
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerWin')}
-      >
-        Win
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerStretchSway')}
-      >
-        StretchSway
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerTwitchStretch')}
-      >
-        TwitchStretch
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerHop')}
-      >
-        Hop
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerBigJump')}
-      >
-        BigJump
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerBigSigh')}
-      >
-        BigSigh
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerKnockDown')}
-      >
-        KnockDown
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerHeadShake')}
-      >
-        HeadShake
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerDamaged')}
-      >
-        Damaged
-      </Button>
-      <Button
-        variant='contained'
-        onClick={() => sendPlayAnimation('triggerSpinKick')}
-      >
-        SpinKick
-      </Button>
-    </div>
-  );
-};
+// const DebugAnimationMenu = () => {
+//   return (
+//     <div
+//       style={{
+//         position: 'absolute',
+//         top: '16px',
+//         left: '16px',
+//         display: 'flex',
+//         flexDirection: 'column',
+//         height: '500px',
+//         justifyContent: 'space-evenly',
+//         zIndex: 999999,
+//       }}
+//     >
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerWin')}
+//       >
+//         Win
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerStretchSway')}
+//       >
+//         StretchSway
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerTwitchStretch')}
+//       >
+//         TwitchStretch
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerHop')}
+//       >
+//         Hop
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerBigJump')}
+//       >
+//         BigJump
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerBigSigh')}
+//       >
+//         BigSigh
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerKnockDown')}
+//       >
+//         KnockDown
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerHeadShake')}
+//       >
+//         HeadShake
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerDamaged')}
+//       >
+//         Damaged
+//       </Button>
+//       <Button
+//         variant='contained'
+//         onClick={() => sendPlayAnimation('triggerSpinKick')}
+//       >
+//         SpinKick
+//       </Button>
+//     </div>
+//   );
+// };
 
 const ApplicationControl = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
