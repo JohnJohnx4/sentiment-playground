@@ -5,10 +5,10 @@ export const SentimentStyles = {
   Root: styled.div`
     position: absolute;
     margin: 16px;
-    z-index: 9999;
     right: 0px;
+    z-index: 9999;
     @media (max-width: 640px) {
-      bottom: 0;
+      bottom: 64px;
     }
   `,
   Paper: styled(Paper)`

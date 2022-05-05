@@ -38,7 +38,15 @@ const ScoreItem: React.FC<{ text: string; score: number }> = ({
   );
 };
 
-const Footer = () => {
+interface Props {
+  sendPlayAnimation: (animation: string) => void;
+  animations: { posAnims: string[]; negAnims: string[] };
+}
+
+const SentimentDialogue: React.FC<Props> = ({
+  sendPlayAnimation,
+  animations,
+}) => {
   const defaultSentiment = {
     score: 0,
     comparative: 0,
@@ -48,6 +56,7 @@ const Footer = () => {
     positive: [],
     negative: [],
   };
+
   const [userInput, setUserInput] = useState('');
   const [overallScore, setOverallScore] = useState(0);
 
@@ -57,6 +66,21 @@ const Footer = () => {
   const [sentimentTracker, setSentimentTracker] = useState<
     { score: number; text: string }[]
   >([]);
+
+  const generateRandomNumber = () => {
+    return Math.floor(Math.random() * (5 - 1 + 1) + 1);
+  };
+
+  const triggerPositiveAnimation = useCallback(() => {
+    const animIndex = generateRandomNumber();
+    console.log('triggering ');
+    sendPlayAnimation(animations.posAnims[animIndex]);
+  }, []);
+
+  const triggerNegativeAnimation = useCallback(() => {
+    const animIndex = generateRandomNumber();
+    sendPlayAnimation(animations.negAnims[animIndex]);
+  }, []);
 
   const handleUserInput = useCallback(
     ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,10 +99,17 @@ const Footer = () => {
         ...prev,
         { score: sentimentObj.score, text: userInput },
       ]);
+
+      if (sentimentObj.score > 0) {
+        triggerPositiveAnimation();
+      } else if (sentimentObj.score < 0) {
+        triggerNegativeAnimation();
+      }
+
       setUserInput('');
       return sentimentObj;
     });
-  }, [userInput]);
+  }, [userInput, triggerPositiveAnimation, triggerNegativeAnimation]);
 
   return (
     <SentimentStyles.Root id='sentiment-root'>
@@ -133,7 +164,7 @@ const Footer = () => {
             Overall Score: {overallScore}
           </Typography>
         </SentimentStyles.Section>
-        <SentimentStyles.Section>
+        {/* <SentimentStyles.Section>
           {sentimentTracker.length > 0 && (
             <Accordion elevation={0}>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -148,10 +179,10 @@ const Footer = () => {
               </AccordionDetails>
             </Accordion>
           )}
-        </SentimentStyles.Section>
+        </SentimentStyles.Section> */}
       </SentimentStyles.Paper>
     </SentimentStyles.Root>
   );
 };
 
-export default Footer;
+export default SentimentDialogue;

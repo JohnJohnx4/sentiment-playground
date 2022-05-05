@@ -1,5 +1,4 @@
-import FrontPage from 'component/FrontPage';
-import UnityLayer from 'component/UnityLayer';
+import FrontPage from 'pages/FrontPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export const AppRouter = () => {
@@ -8,9 +7,6 @@ export const AppRouter = () => {
       <Switch>
         <Route path="/" exact>
           <FrontPage />
-        </Route>
-        <Route path="/unity" exact>
-          <UnityLayer />
         </Route>
       </Switch>
     </Router>
